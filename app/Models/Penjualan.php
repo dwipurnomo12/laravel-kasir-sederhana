@@ -18,5 +18,4 @@ class Penjualan extends Model
     }
 
 
-
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Models\Produk;
 use App\Models\Penjualan;
 use Illuminate\Pagination\Paginator;
@@ -36,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
         $penjualans = Penjualan::where('status', '0')->get();
         view::share('penjualan', $penjualans);
 
+        $user = User::where('username', 'kasir')->get();
+        view::share('user', $user);
  
     }
 }

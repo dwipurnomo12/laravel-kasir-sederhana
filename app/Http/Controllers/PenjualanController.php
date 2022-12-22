@@ -16,6 +16,8 @@ class PenjualanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  Menampilkan tabel
     public function index()
     {
         $users = Auth::user();
@@ -23,6 +25,7 @@ class PenjualanController extends Controller
 
         return view('penjualan.index', [
             'users' => $users,
+            'penjualans' => $penjualan
         ]);
     }
 
@@ -31,6 +34,8 @@ class PenjualanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  Menampilkan form input data barang
     public function create()
     {
         $users = Auth::user();
@@ -51,10 +56,13 @@ class PenjualanController extends Controller
         // $validated = $request->validate([
         //     'nama_barang' => 'required',
         //     'kode_barang' => 'required',
-        //     'harga_jual'  => 'required',
-        //     'quantity'    => 'required',
         // ]);
 
+        // $penjualan = new Penjualan();
+        // $harga_jual = Produk::where('nama_barang', $request->nama_barang)->first();
+
+        // $validated['quantity'] = $penjualan->quantity += $request->quantity;
+        // $validated['total_bayar'] = $penjualan->total_bayar += $harga_jual->harga_jual * $request->quantity;
         // $validated['user_id'] = auth()->user()->id;
 
         // Penjualan::create($validated);
@@ -101,9 +109,7 @@ class PenjualanController extends Controller
      */
     public function edit(Penjualan $penjualan)
     {
-        return view('/penjualan', [
-            'penjualan' => $penjualan
-        ]);
+        return view('penjualan.pembayaran');
     }
 
     /**
@@ -113,9 +119,9 @@ class PenjualanController extends Controller
      * @param  \App\Models\Penjualan  $penjualan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penjualan $nama_barang)
+    public function update(Request $request, Penjualan $penjualan)
     {
-        
+
     }
 
     /**
@@ -139,6 +145,10 @@ class PenjualanController extends Controller
     }
 
 
-
+    public function selesai(Request $request)
+    {
+        Penjualan::query()->delete();
+        return redirect('/penjualan');
+    }
 
 }

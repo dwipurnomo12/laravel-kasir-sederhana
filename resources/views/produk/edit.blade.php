@@ -62,7 +62,7 @@
               </div>
 
               <div class="mb-3 my-4 float-end">
-                <button type="submit" class="btn btn-primary">Tambah Barang</button>
+                <button type="submit" class="btn btn-primary">Edit Barang</button>
               </div>
         </form>
         

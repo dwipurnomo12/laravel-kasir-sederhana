@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KasirController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LayoutController;
@@ -30,13 +31,14 @@ Route::group(['middleware' => ['auth']], function(){
     // Dashboard Admin
     Route::group(['middleware' => ['UserLogin:1']], function(){
         Route::resource('/produk', ProdukController::class);
+        Route::resource('/kasir', KasirController::class);
     });
 
     // Dashboard Kasir
     Route::group(['middleware' => ['UserLogin:2']], function(){
         Route::resource('/penjualan', PenjualanController::class);
         Route::get('/api/penjualan', [PenjualanController::class, 'getAutocompleteData']);
-        Route::post('/penjualan', [PenjualanController::class, 'proses_pembayaran']);
+        Route::delete('/penjualan', [PenjualanController::class, 'selesai'])->name('delete-all');
     });
 });
 

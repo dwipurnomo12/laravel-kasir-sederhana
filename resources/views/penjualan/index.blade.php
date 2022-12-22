@@ -98,7 +98,8 @@
         <div class="card">
             <div class="card-body">
                 <h1>Pembayaran</h1>
-                <form action="/penjualan/" method="post" enctype="multipart/form-data">
+                <form action="{{ route('delete-all') }}" method="post" enctype="multipart/form-data">
+                    @method('delete')
                     @csrf
 
                     <div class="col">
@@ -116,8 +117,11 @@
                         </div>
                     </div>
                     <div class="mb-3 my-4 float-end">
-                        <button type="submit" class="btn btn-primary">Bayar</button>
-                        {{-- <button type="submit" class="btn btn-primary">Cetak Struk</button> --}}
+                        <form action="/penjualan/" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-primary">Selesai</button>
+                        </form>
                     </div>
                 </form>
             </div>
