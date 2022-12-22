@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('container')
+
+{{-- Keranjang --}}
 <div class="row mb-4">
     <div class="col">
         <div class="card">
@@ -21,7 +23,6 @@
                             <tbody>
                            <?php $no = 1; ?>
                             @foreach ($penjualan as $item)
-                                {{-- @foreach ($item->produk as $list) --}}
                                     <tr>
                                         <td>{{ $no++}}</td>
                                         <td>{{ $item->kode_barang }}</td>
@@ -36,7 +37,6 @@
                                             </form>
                                         </td>
                                     </tr>
-                                {{-- @endforeach --}}
                             @endforeach     
                            </tbody>
                         </table>
@@ -46,7 +46,7 @@
     </div>
 </div>
     
-    
+    {{-- Menu Kasir --}}
 <div class="row mt-4 mb-4">
     <div class="col-md-6">
         <div class="card">
@@ -94,6 +94,7 @@
     </div>
     
 
+    {{-- Pembayaran --}}
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">

@@ -17,7 +17,7 @@ class LoginController extends Controller
     return view('login.index');
     }
 
-    // Validation
+    // Proses Login User
     public function proses(Request $request)
     {
         $request->validate([

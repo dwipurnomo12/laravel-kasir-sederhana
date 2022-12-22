@@ -17,6 +17,7 @@ class UserLogin
      */
     public function handle(Request $request, Closure $next, $rules)
     {
+        // Cek apakah user sudah login atau belum, jika belum maka akan di arahkan ke form Login dulu
         if(!Auth::check()){
             return redirect('login');
         }

@@ -14,6 +14,8 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  Menampilkan halaman tabel produk
     public function index()
     {
         $users = Auth::user();
@@ -27,6 +29,8 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  Menampilkan form tambah produk 
     public function create()
     {
         return view('produk.create', [
@@ -40,6 +44,8 @@ class ProdukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //  Proses tambah data produk
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -73,6 +79,8 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
+
+    //  menampilkan form input untuk edit
     public function edit(Produk $produk)
     {
         return view('produk.edit', [
@@ -88,6 +96,8 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
+
+    //  Proses update data
     public function update(Request $request, Produk $produk)
     {
         $rules = [
@@ -116,6 +126,8 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
+
+    //  Untuk menghapus data berdasarkan id
     public function destroy(Produk $produk)
     {
         Produk::destroy($produk->id);

@@ -17,7 +17,7 @@ class PenjualanController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //  Menampilkan tabel
+    //  Menampilkan tabel dari table penjualan
     public function index()
     {
         $users = Auth::user();
@@ -51,32 +51,21 @@ class PenjualanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //  Proses tambah data
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'nama_barang' => 'required',
-        //     'kode_barang' => 'required',
-        // ]);
-
-        // $penjualan = new Penjualan();
-        // $harga_jual = Produk::where('nama_barang', $request->nama_barang)->first();
-
-        // $validated['quantity'] = $penjualan->quantity += $request->quantity;
-        // $validated['total_bayar'] = $penjualan->total_bayar += $harga_jual->harga_jual * $request->quantity;
-        // $validated['user_id'] = auth()->user()->id;
-
-        // Penjualan::create($validated);
-        // return redirect('/penjualan')->with('success', 'Berhasil Ditambah');
-
-
         $product_check = Penjualan::where('nama_barang', $request->nama_barang)->where('status', '0')->first();
         $harga_jual = Produk::where('nama_barang', $request->nama_barang)->first();
 
+        // Kondisi jika data yang di tambahkan hanya 1
         if($product_check == null){
             $penjualan = new Penjualan;
             $penjualan->nama_barang = $request->nama_barang;
             $penjualan->quantity = $request->quantity;
             $penjualan->kode_barang = $request->kode_barang;
+        
+        //Kondisi jika user menambahkan barang lebih dari satu maka otomatis akan menambahkan 
         }else{
             $penjualan = Penjualan::where('nama_barang', $request->nama_barang)->where('status', '0')->first();
             $penjualan->nama_barang = $request->nama_barang;
@@ -130,6 +119,8 @@ class PenjualanController extends Controller
      * @param  \App\Models\Penjualan  $penjualan
      * @return \Illuminate\Http\Response
      */
+
+    //  Menhgapus Data
     public function destroy(Penjualan $penjualan)
     {
         Penjualan::destroy($penjualan->id);
@@ -144,7 +135,7 @@ class PenjualanController extends Controller
         }
     }
 
-
+    // Untuk membersihkan data atau hapus semua data pada teble
     public function selesai(Request $request)
     {
         Penjualan::query()->delete();

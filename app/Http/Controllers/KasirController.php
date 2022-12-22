@@ -16,6 +16,8 @@ class KasirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // Menampilkan Halaman Index
     public function index()
     {
         $users = Auth::user();
@@ -29,6 +31,8 @@ class KasirController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //  Menampilkan Form Tambah Kasir
     public function create()
     {
         return view('kasir.create', [
@@ -42,6 +46,8 @@ class KasirController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    // Proses tambah kasir
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -75,6 +81,8 @@ class KasirController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //  Menampilkan form inputan untuk edit
     public function edit(User $user, $id)
     {
         return view('kasir.edit',[
@@ -90,6 +98,8 @@ class KasirController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //  Proses update data
     public function update(Request $request, User $user)
     {
         $rules = [
@@ -115,6 +125,8 @@ class KasirController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //  Untuk menghapus data
     public function destroy(User $user, $id)
     {
         $user = User::findOrFail($id);

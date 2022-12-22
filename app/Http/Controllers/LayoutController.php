@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LayoutController extends Controller
 {
-    // Menampilkan halaman Home berdasarkan user
+    // Menampilkan halaman Home berdasarkan user yang login
     public function index(){
         $users = Auth::user();
 
